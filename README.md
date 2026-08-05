@@ -195,10 +195,6 @@ Breno Vieira conduziu um teste controlado: desenvolver o mesmo sistema complexo 
 
 ### Os Resultados
 
-```mermaid
-barchart-beta
-```
-
 | Metrica | Vibe Coding (Frontier) | SDD (Local) |
 |---|---|---|
 | Funcionalidade entregue | Equivalente | Equivalente |
