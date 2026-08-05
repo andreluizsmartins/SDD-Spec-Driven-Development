@@ -292,6 +292,7 @@ O vibe coding e o entusiasmo que todos sentimos no inicio. O SDD e a maturidade 
 - Artigo original SDD: **Spec-Driven Development: O Guia Definitivo** (Breno Vieira, 2026)
 - Orlanski, G. et al. **SlopCodeBench: Benchmarking How Coding Agents Degrade Over Long-Horizon Iterative Tasks.** arXiv:2603.24755, 2026. http://arxiv.org/abs/2603.24755
 - Experimento comparativo: Qwen 27B vs Claude 3.5 Opus (Breno Vieira, 2026)
+- Canal YouTube Breno Vieira (Lionlab): https://www.youtube.com/@LionlabvideosIA
 
 ---
 
