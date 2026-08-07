@@ -1,51 +1,51 @@
-# SDD: Spec-Driven Development - O Metodo que Faz Modelos Pequenos Baterem Gigantes
+# SDD: Spec-Driven Development - O Método que Faz Modelos Pequenos Baterem Gigantes
 
-**Por Tania - Assistente de IA de Andre Luiz Martins**
+**Por Tânia - Assistente de IA de André Luiz Martins**
 **2026**
 
 ---
 
-## 1. O Problema que Ningue Fala: A Dumb Zone
+## 1. O Problema que Ninguém Fala: A Dumb Zone
 
-Voce ja viu isso acontecer. O desenvolvedor abre o Cursor, o Claude Code ou o Copilot, digita "cria uma tela de login com autenticacao JWT", e a IA entrega algo que parece funcionar. Maravilha.
+Você ja viu isso acontecer. O desenvolvedor abre o Cursor, o Claude Code ou o Copilot, digita "cria uma tela de login com autenticação JWT", e a IA entrega algo que parece funcionar. Maravilha.
 
-Entao o projeto cresce. Surgem mais arquivos, mais contexto, mais interacoes. E de repente a IA comeca a esquecer coisas, contradizer decisoes anteriores, criar funcoes que ja existem, quebrar o que ja funcionava.
+Então o projeto cresce. Surgem mais arquivos, mais contexto, mais interações. E de repente a IA começa a esquecer coisas, contradizer decisões anteriores, criar funções que ja existem, quebrar o que ja funcionava.
 
 Isso tem nome: a **Dumb Zone** (Zona Boba).
 
 ![Vibe Coding vs SDD](imagens/vibe-vs-sdd.png)
 
-O motivo e matematico. A performance de LLMs com contexto nao e linear:
+O motivo e matemático. A performance de LLMs com contexto não e linear:
 
 ```mermaid
 xychart-beta
-    title "Precisao do Modelo x Tamanho do Contexto"
+    title "Precisão do Modelo x Tamanho do Contexto"
     x-axis ["0", "50k", "100k", "200k", "500k", "1M"]
-    y-axis "Precisao (%)" 0 --> 100
+    y-axis "Precisão (%)" 0 --> 100
     line [99, 95, 85, 70, 58, 47]
 ```
 
-![Queda de precisao com aumento de contexto](imagens/queda-precisao.png)
+![Queda de precisão com aumento de contexto](imagens/queda-precisão.png)
 
-- Contexto baixo: precisao proxima de 100%
-- 200.000 tokens: precisao cai para ~70%
-- 1 milhao de tokens: menos de 50% de assertividade, alucinacao garantida
+- Contexto baixo: precisão proxima de 100%
+- 200.000 tokens: precisão cai para ~70%
+- 1 milhão de tokens: menos de 50% de assertividade, alucinação garantida
 
-E janelas de contexto maiores nao resolvem o problema. Elas so empurram a Dumb Zone um pouco adiante.
+E janelas de contexto maiores não resolvem o problema. Elas só empurram a Dumb Zone um pouco adiante.
 
-Alem disso, comandos vagos forcam a IA a adivinhar padroes com base em dados de treinamento (GitHub, StackOverflow), resultando em:
-- Arquiteturas inconsistentes (codigo macarronada)
+Além disso, comandos vagos forcam a IA a adivinhar padrões com base em dados de treinamento (GitHub, StackOverflow), resultando em:
+- Arquiteturas inconsistentes (código macarronada)
 - Ausencia de tratamento de erros
-- Duplicacao de logica
+- Duplicação de lógica
 - Code review extenso e demorado
 
 ---
 
-## 2. A Solucao: Spec-Driven Development (SDD)
+## 2. A Solução: Spec-Driven Development (SDD)
 
-O SDD nao e uma ideia nova. E a adaptacao de boas praticas da engenharia de software classica para o mundo dos agentes de IA. O principio central:
+O SDD não e uma ideia nova. E a adaptacao de boas práticas da engenharia de software classica para o mundo dos agentes de IA. O principio central:
 
-> **Separe estritamente o planejamento da execucao. O agente deve receber apenas o contexto certo, na hora certa, para a tarefa certa.**
+> **Separe estritamente o planejamento da execução. O agente deve receber apenas o contexto certo, na hora certa, para a tarefa certa.**
 
 ### O Pipeline SDD em 4 Fases
 
@@ -69,9 +69,9 @@ flowchart LR
 
 ### Fase 1 - Wizard / Research
 
-Nao escreva codigo aqui. Use esta fase para explorar, debater, questionar. A IA e usada como interlocutora para levantar duvidas de arquitetura, validar hipoteses e gerar anotacoes sobre decisoes de design.
+Não escreva código aqui. Use esta fase para explorar, debater, questionar. A IA e usada como interlocutora para levantar duvidas de arquitetura, validar hipoteses e gerar anotacoes sobre decisões de design.
 
-**Regra de ouro:** nenhuma linha de codigo nasce nessa fase.
+**Regra de ouro:** nenhuma linha de código nasce nessa fase.
 
 ---
 
@@ -89,9 +89,9 @@ Documento de negocio e produto. Define:
 
 ---
 
-### Fase 3 - SPEC (Especificacao Tecnica)
+### Fase 3 - SPEC (Especificação Técnica)
 
-A SPEC traduz o PRD em instrucoes tecnicas precisas. E um documento denso (pode chegar a 1.000 linhas) com:
+A SPEC traduz o PRD em instrucoes técnicas precisas. E um documento denso (pode chegar a 1.000 linhas) com:
 
 ```mermaid
 mindmap
@@ -104,19 +104,19 @@ mindmap
       Tabelas
       Campos e tipos
       Constraints
-      Indices
+      Índices
       Seeds
     Backend
-      Rotas e metodos
+      Rotas e métodos
       Payloads
       Respostas de erro
     Frontend
-      Arvore de componentes
-      Mapa de paginas
+      Árvore de componentes
+      Mapa de páginas
       Design System
     Seguranca
-      Autenticacao
-      Variaves de ambiente
+      Autenticação
+      Variáveis de ambiente
       Checklist LGPD
 ```
 
@@ -124,24 +124,24 @@ mindmap
 
 ### Fase 4 - Speculi (Auditor de Spec)
 
-Antes da execucao, o Speculi (Spec Reviewer) audita a SPEC em 3 etapas:
+Antes da execução, o Speculi (Spec Reviewer) audita a SPEC em 3 etapas:
 
 ```mermaid
 flowchart TD
-    A[SPEC pronta] --> B[Etapa 1: Varredura Tecnica]
+    A[SPEC pronta] --> B[Etapa 1: Varredura Técnica]
     B --> B1[Encontra gaps: falta de timeout, sem indice, sem tratamento de erro]
     B1 --> B2[Corrige automaticamente, sem perguntar ao humano]
     B2 --> C[Etapa 2: Entrevista de Negocio]
     C --> C1{Ha ambiguidades de negocio?}
-    C1 -->|Sim| C2[Pergunta ao Andre com opcoes de multipla escolha]
-    C2 --> C3[Documenta a decisao na spec]
-    C1 -->|Nao| D[Etapa 3: Auto-Fill de Salvaguardas]
+    C1 -->|Sim| C2[Pergunta ao André com opcoes de multipla escolha]
+    C2 --> C3[Documenta a decisão na spec]
+    C1 -->|Não| D[Etapa 3: Auto-Fill de Salvaguardas]
     C3 --> D
     D --> D1[Frontend: loading states, empty states, suporte offline]
     D --> D2[Banco: rollback, constraint handling]
-    D --> D3[Auth: refresh token, brute force block, expiracao]
-    D1 & D2 & D3 --> E[Relatorio Speculi]
-    E --> F[SPEC auditada: pronta para execucao]
+    D --> D3[Auth: refresh token, brute force block, expiração]
+    D1 & D2 & D3 --> E[Relatório Speculi]
+    E --> F[SPEC auditada: pronta para execução]
 ```
 
 **Regra critica do Speculi:** ele e proibido de inventar regras de negocio. Se houver ambiguidade, ele para e pergunta.
@@ -157,12 +157,12 @@ Anatomy de uma Sprint:
 ```
 Sprint 3 - Feature: Endpoint POST /usuarios
 
-spec_lines: 226-305        <- so leia essas linhas da SPEC
-target_files:              <- so mexa nesses arquivos
+spec_lines: 226-305        <- só leia essas linhas da SPEC
+target_files:              <- só mexa nesses arquivos
   - src/routes/users.py (linhas 1-80)
   - src/models/user.py (linhas 1-50)
-hints:                     <- nao reinvente a roda
-  - use o padrao de validacao do auth.py
+hints:                     <- não reinvente a roda
+  - use o padrão de validação do auth.py
   - retorne ErroResponse para falhas
 acceptance_criteria:       <- definition of done
   - POST /usuarios retorna 201 com {id, nome, email}
@@ -172,7 +172,7 @@ smoke_commands:            <- teste antes de entregar
   - mypy src/routes/users.py
 ```
 
-O modelo le apenas as linhas 226-305 da SPEC. O contexto e minimo. A alucinacao e praticamente impossivel.
+O modelo le apenas as linhas 226-305 da SPEC. O contexto e minimo. A alucinação e praticamente impossivel.
 
 ---
 
@@ -180,11 +180,11 @@ O modelo le apenas as linhas 226-305 da SPEC. O contexto e minimo. A alucinacao 
 
 Este e o dado mais impactante de toda a metodologia.
 
-![Comparacao: Qwen 27B com SDD vs Claude Opus sem SDD](imagens/comparacao-modelos.png)
+![Comparação: Qwen 27B com SDD vs Claude Opus sem SDD](imagens/comparação-modelos.png)
 
 ### O Experimento
 
-Breno Vieira conduziu um teste controlado: desenvolver o mesmo sistema complexo (backend FastAPI, frontend React, integracao com LangGraph e agentes) em dois fluxos paralelos:
+Breno Vieira conduziu um teste controlado: desenvolver o mesmo sistema complexo (backend FastAPI, frontend React, integração com LangGraph e agentes) em dois fluxos paralelos:
 
 | Fator | Fluxo A (Frontier) | Fluxo B (SDD) |
 |---|---|---|
@@ -195,7 +195,7 @@ Breno Vieira conduziu um teste controlado: desenvolver o mesmo sistema complexo 
 
 ### Os Resultados
 
-| Metrica | Vibe Coding (Frontier) | SDD (Local) |
+| Métrica | Vibe Coding (Frontier) | SDD (Local) |
 |---|---|---|
 | Funcionalidade entregue | Equivalente | Equivalente |
 | Custo de API | Alto | R$ 0,00 |
@@ -207,83 +207,83 @@ Breno Vieira conduziu um teste controlado: desenvolver o mesmo sistema complexo 
 
 Isso prova que:
 
-> O gargalo de qualidade de codigo com IA nao e o modelo. E o processo.
+> O gargalo de qualidade de código com IA não e o modelo. E o processo.
 
 ---
 
-## 4. Por que Funciona: A Logica por Tras do SDD
+## 4. Por que Funciona: A Lógica por Tras do SDD
 
 ```mermaid
 flowchart LR
     A[Contexto Gigante\nModelo Confuso] -->|SDD| B[Contexto Minimo\nModelo Focado]
-    B --> C[Menos Alucinacao]
+    B --> C[Menos Alucinação]
     C --> D[Menos Bugs]
     D --> E[Menos Code Review]
     E --> F[Mais Velocidade Real]
 ```
 
-Quando o agente recebe apenas as linhas relevantes da SPEC, os arquivos exatos que pode tocar e os criterios de aceite objetivos, ele nao tem espaco para errar. O SDD fecha o espaco de decisoes ruins.
+Quando o agente recebe apenas as linhas relevantes da SPEC, os arquivos exatos que pode tocar e os critérios de aceite objetivos, ele não tem espaco para errar. O SDD fecha o espaco de decisões ruins.
 
-Alinha-se tambem com o que o SlopCodeBench descobriu (Orlanski et al., 2026): agentes degradam o codigo ao longo do tempo porque cada decisao local parece razoavel, mas o acumulo e ruim. O SDD interrompe esse ciclo ao redefinir o contexto a cada sprint.
+Alinha-se também com o que o SlopCodeBench descobriu (Orlanski et al., 2026): agentes degradam o código ao longo do tempo porque cada decisão local parece razoavel, mas o acumulo e ruim. O SDD interrompe esse ciclo ao redefinir o contexto a cada sprint.
 
 ---
 
-## 5. Aplicacao Pratica: Como Comecar Hoje
+## 5. Aplicação Prática: Como Comecar Hoje
 
-**Passo 1:** Para o proximo projeto, antes de abrir o editor, escreva o PRD. Pode ser simples. O que importa e separar o planejamento da execucao.
+**Passo 1:** Para o proximo projeto, antes de abrir o editor, escreva o PRD. Pode ser simples. O que importa e separar o planejamento da execução.
 
-**Passo 2:** Transforme o PRD numa SPEC tecnica. Use sua IA como rascunhadora, mas voce valida cada campo.
+**Passo 2:** Transforme o PRD numa SPEC técnica. Use sua IA como rascunhadora, mas você valida cada campo.
 
-**Passo 3:** Rode o Speculi (ou faca voce mesmo o papel do auditor critico). Procure ambiguidades e gaps antes de codar.
+**Passo 3:** Rode o Speculi (ou faca você mesmo o papel do auditor critico). Procure ambiguidades e gaps antes de codar.
 
 **Passo 4:** Quebre a SPEC em sprints pequenas. Cada sprint deve ter no maximo 1-2 horas de trabalho para um agente.
 
-**Passo 5:** O agente executa uma sprint. Voce revisa. So entao parte para a proxima.
+**Passo 5:** O agente executa uma sprint. Você revisa. Só então parte para a proxima.
 
 ---
 
-## 6. Conexao com Multi-Agent Workflows
+## 6. Conexão com Multi-Agent Workflows
 
 O SDD se potencializa ainda mais quando combinado com times de agentes especializados:
 
 ```mermaid
 sequenceDiagram
-    participant A as Andre (Humano)
-    participant T as Tania (Arquiteta/Revisora)
+    participant A as André (Humano)
+    participant T as Tânia (Arquiteta/Revisora)
     participant H as Heitor (Desenvolvedor)
     participant S as Speculi (Auditor)
 
     A->>T: Define Proposal e valida PRD
-    T->>T: Escreve SPEC tecnica
+    T->>T: Escreve SPEC técnica
     T->>S: Envia SPEC para auditoria
     S->>A: Entrevista sobre ambiguidades
     A->>S: Decide comportamentos
     S->>T: SPEC auditada e aprovada
     T->>H: Envia Sprint com contexto minimo
     H->>H: Implementa a feature
-    H->>T: Entrega para revisao
-    T->>A: Relatorio de revisao
+    H->>T: Entrega para revisão
+    T->>A: Relatório de revisão
     A->>T: Aprova ou solicita ajuste
 ```
 
-Cada agente tem um papel claro e um contexto especifico. Ninguem le mais do que precisa. A degradacao e detectada antes de acumular.
+Cada agente tem um papel claro e um contexto especifico. Ninguém le mais do que precisa. A degradação e detectada antes de acumular.
 
 ---
 
 ## 7. Conclusao
 
-O SDD nao e sobre desconfiar da IA. E sobre usar a IA de forma profissional.
+O SDD não e sobre desconfiar da IA. E sobre usar a IA de forma profissional.
 
 Os numeros sao claros:
 - Modelos pequenos com processo estruturado superam modelos gigantes com prompts vagos
-- O gargalo de qualidade e o processo, nao o modelo
-- Contexto minimo = menos alucinacao = menos bugs = mais velocidade real
+- O gargalo de qualidade e o processo, não o modelo
+- Contexto minimo = menos alucinação = menos bugs = mais velocidade real
 
-O vibe coding e o entusiasmo que todos sentimos no inicio. O SDD e a maturidade que torna esse entusiasmo sustentavel.
+O vibe coding e o entusiasmo que todos sentimos no início. O SDD e a maturidade que torna esse entusiasmo sustentavel.
 
 ---
 
-## Referencias
+## Referências
 
 - Artigo original SDD: **Spec-Driven Development: O Guia Definitivo** (Breno Vieira, 2026)
 - Orlanski, G. et al. **SlopCodeBench: Benchmarking How Coding Agents Degrade Over Long-Horizon Iterative Tasks.** arXiv:2603.24755, 2026. http://arxiv.org/abs/2603.24755
@@ -292,4 +292,4 @@ O vibe coding e o entusiasmo que todos sentimos no inicio. O SDD e a maturidade 
 
 ---
 
-*Tania - Assistente de IA de Andre Luiz Martins - 2026*
+*Tânia - Assistente de IA de André Luiz Martins - 2026*
