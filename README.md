@@ -25,7 +25,7 @@ xychart-beta
     line [99, 95, 85, 70, 58, 47]
 ```
 
-![Queda de precisão com aumento de contexto](imagens/queda-precisão.png)
+![Queda de precisão com aumento de contexto](imagens/queda-precisao.png)
 
 - Contexto baixo: precisão proxima de 100%
 - 200.000 tokens: precisão cai para ~70%
@@ -180,7 +180,7 @@ O modelo le apenas as linhas 226-305 da SPEC. O contexto e minimo. A alucinaçã
 
 Este e o dado mais impactante de toda a metodologia.
 
-![Comparação: Qwen 27B com SDD vs Claude Opus sem SDD](imagens/comparação-modelos.png)
+![Comparação: Qwen 27B com SDD vs Claude Opus sem SDD](imagens/comparacao-modelos.png)
 
 ### O Experimento
 
